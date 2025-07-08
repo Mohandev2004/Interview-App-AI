@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../../components/inputs/Inpute";
+import Input from "../../components/inputs/Input";
 import SpinnerLoader from "../../components/loader/SpinnerLoader";
 import axiosInstance from "../../utills/axios";
 import { API_PATHS } from "../../utills/apiPaths";
