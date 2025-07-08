@@ -1,6 +1,6 @@
 import React, { useState ,useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../../components/inputs/Inpute";
+import Input from "../../components/inputs/Input";
 import {validateEmail} from "../../utills/help"
 import axiosInstance from "../../utills/axios";
 import { API_PATHS } from "../../utills/apiPaths";
