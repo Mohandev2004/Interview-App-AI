@@ -15,13 +15,21 @@ const {
 const app = express();
 const _dirname = path.resolve();
 
-app.use(
-  cors({
-    origin: "https://interview-app-ai-one.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+const allowedOrigins = [ 
+  "https://interview-app-ai-one.vercel.app",
+  "https://interview-app-fi11h1jwq-mohan-as-projects-9860f931.vercel.app" 
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS: " + origin));
+    }
+  },
+  credentials: true,
+}));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
