@@ -17,8 +17,7 @@ const _dirname = path.resolve();
 
 app.use(
   cors({
-    origin: "https://interview-app-ai-one.vercel.app",
-    credentials: true,
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })

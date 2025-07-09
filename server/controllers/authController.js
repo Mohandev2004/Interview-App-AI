@@ -33,7 +33,7 @@ const registerUser = async (req, res) => {
             profileImageUrl,
         });
 
-        // return user data with iwt
+        // return user data with jwt
         res.status(201).json({
             _id: user._id,
             name: user.name,
