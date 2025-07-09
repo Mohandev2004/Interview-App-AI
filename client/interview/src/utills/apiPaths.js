@@ -1,4 +1,4 @@
-export const BASE_URL = "https://interview-app-ai-one.vercel.app/";
+export const BASE_URL = "https://interview-app-ai-lemon.vercel.app/api";
 
 export const API_PATHS = {
     AUTH: {
