@@ -17,7 +17,7 @@ const _dirname = path.resolve();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://interview-app-ai-delta.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
