@@ -1,4 +1,4 @@
-export const BASE_URL = "https://interview-app-ai-delta.vercel.app";
+export const BASE_URL = "/"; 
 
 export const API_PATHS = {
     AUTH: {
