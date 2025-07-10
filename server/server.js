@@ -28,14 +28,32 @@ app.use(express.json());
 
 connectDB();
 
+function startCronJob() {
+  // Run every 5 minutes
+  cron.schedule("*/5 * * * *", async () => {
+    console.log("⏰ Calling /cron at", new Date().toLocaleTimeString());
+
+    try {
+      const res = await axios.get("http://localhost:3000/cron");
+      console.log("✅ API Response:", res.data);
+    } catch (error) {
+      console.error("❌ Failed to call /cron:", error.message);
+    }
+  });
+}
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/session", sessionRoutes);
 app.use("/api/questions", questionRoutes);
 app.use("/api/ai/generate-questions", protect, generateInterviewQuestions);
 app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);
-
-
+//coron job api
+app.get("/cron", (req, res) => {
+  console.log("🚀 /cron endpoint triggered at", new Date().toLocaleTimeString());
+  startCronJob();
+  res.send("✅ Cron task handled");
+});
 
 app.use("/uploads", express.static(path.join(_dirname, "uploads")));
 
