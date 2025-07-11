@@ -1,6 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "./apiPaths";
 
+// Create axios instance
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 80000,
@@ -10,13 +11,11 @@ const axiosInstance = axios.create({
   },
 });
 
-// OPTIONAL: You may still keep this block IF you're temporarily storing token somewhere in memory
-// For now, we'll REMOVE token fetching from localStorage
-// If you're storing token in memory (e.g., React Context), set it manually when logging in
-
+// OPTIONAL: Automatically add token to Authorization header if stored in localStorage
+// Uncomment and use if you're storing tokens this way
 // axiosInstance.interceptors.request.use(
 //   (config) => {
-//     const accessToken = localStorage.getItem("token"); 
+//     const accessToken = localStorage.getItem("token");
 //     if (accessToken) {
 //       config.headers.Authorization = `Bearer ${accessToken}`;
 //     }
@@ -25,19 +24,24 @@ const axiosInstance = axios.create({
 //   (error) => Promise.reject(error)
 // );
 
-// Global response error handler
+// Global error handling for responses
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
       if (error.response.status === 401) {
+        // Unauthenticated - redirect to login
         window.location.href = "/";
       } else if (error.response.status === 500) {
-        console.error("Server error, please try again later.");
+        console.error("Server error. Please try again later.");
+        // Optionally show a toast or alert here
       }
     } else if (error.code === "ECONNABORTED") {
-      console.error("Request timeout. Please try again.");
+      console.error("Request timed out. Please try again.");
+    } else {
+      console.error("An unknown error occurred.");
     }
+
     return Promise.reject(error);
   }
 );

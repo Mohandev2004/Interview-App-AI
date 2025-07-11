@@ -1,7 +1,7 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
 import { LuUser, LuUpload, LuTrash } from "react-icons/lu";
-import axiosInstance from "../utills/axios";
-import { UserContext } from "../context/UserContext";
+import axiosInstance from "../../utills/axios";
+import { UserContext } from "../../context/UserContext";
 
 const ProfilePhotoSelector = () => {
   const inputRef = useRef(null);
