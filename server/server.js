@@ -7,17 +7,14 @@ const authRoutes = require("./routes/authRoutes");
 const sessionRoutes = require("./routes/sessionRoutes");
 const questionRoutes = require("./routes/questionRoutes");
 const { protect } = require("./middlewares/authMiddleware");
-const {
-  generateInterviewQuestions,
-  generateConceptExplanation,
-} = require("./controllers/aiController");
+const { generateInterviewQuestions, generateConceptExplanation } = require("./controllers/aiController");
 
 const app = express();
 const _dirname = path.resolve();
 
 app.use(
   cors({
-    origin: "https://interview-app-ai-delta.vercel.app",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })

@@ -64,14 +64,15 @@ const SummaryCard = ({
         </div>
 
         <button
-          className="hidden group-hover:flex items-center gap-2 text-xs text-rose-500 font-medium bg-rose-50 px-3 py-1 rounded text-nowrap border-rose-100 hover:border-rose-200 cursor-pointer absolute top-0  right-0"
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete();
-          }}
-        >
-          <LuTrash2  />
-        </button>
+              className="flex sm:hidden sm:group-hover:flex items-center gap-2 text-xs text-rose-500 font-medium bg-rose-50 px-3 py-1 rounded text-nowrap border-rose-100 hover:border-rose-200 cursor-pointer absolute top-0 right-0"
+               onClick={(e) => {
+               e.stopPropagation();
+                onDelete();
+                 }}
+                 >
+            <LuTrash2 />
+         </button>
+
       </div>
 
       <div className="px-3 pb-3">
