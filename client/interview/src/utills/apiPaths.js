@@ -1,4 +1,4 @@
-export const BASE_URL = "/"; 
+export const BASE_URL = "https://interview-app-ai.onrender.com"; 
 
 export const API_PATHS = {
     AUTH: {
