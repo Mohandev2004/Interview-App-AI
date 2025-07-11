@@ -8,29 +8,34 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Clear user on logout
   const clearUser = () => {
     setUser(null);
+    localStorage.removeItem("token"); // Optional: remove token on logout
   };
 
-  // Fetch user profile once on app load (if token is set in axiosInstance)
   useEffect(() => {
     const fetchUser = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        clearUser();
+        setLoading(false);
+        return;
+      }
+
       try {
         const response = await axiosInstance.get(API_PATHS.AUTH.GET_PROFILE);
         setUser(response.data);
       } catch (error) {
         console.error("User not authenticated", error);
-        clearUser(); // Clear user if unauthorized
+        clearUser();
       } finally {
-        setLoading(false); // ✅ Make sure this always runs
+        setLoading(false);
       }
     };
 
     fetchUser();
   }, []);
 
-  // Call this on successful login or registration
   const updateUser = (userData) => {
     setUser(userData);
     setLoading(false);
@@ -38,7 +43,6 @@ const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ user, loading, updateUser, clearUser }}>
-      {/* ✅ Prevent children from rendering until loading is complete */}
       {!loading && children}
     </UserContext.Provider>
   );

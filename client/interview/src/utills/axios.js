@@ -11,18 +11,17 @@ const axiosInstance = axios.create({
   },
 });
 
-// OPTIONAL: Automatically add token to Authorization header if stored in localStorage
-// Uncomment and use if you're storing tokens this way
-// axiosInstance.interceptors.request.use(
-//   (config) => {
-//     const accessToken = localStorage.getItem("token");
-//     if (accessToken) {
-//       config.headers.Authorization = `Bearer ${accessToken}`;
-//     }
-//     return config;
-//   },
-//   (error) => Promise.reject(error)
-// );
+// ✅ Automatically add token to Authorization header from localStorage
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const accessToken = localStorage.getItem("token");
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 // Global error handling for responses
 axiosInstance.interceptors.response.use(
@@ -34,7 +33,6 @@ axiosInstance.interceptors.response.use(
         window.location.href = "/";
       } else if (error.response.status === 500) {
         console.error("Server error. Please try again later.");
-        // Optionally show a toast or alert here
       }
     } else if (error.code === "ECONNABORTED") {
       console.error("Request timed out. Please try again.");
