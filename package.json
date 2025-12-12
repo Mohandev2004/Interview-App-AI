@@ -23,10 +23,10 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.1",
     "multer": "^2.0.1",
-    "next": "^16.0.8",
+    "next": "^16.0.10",
     "nodemon": "^3.1.10",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "save-dev": "^0.0.1-security"
   }
 }
